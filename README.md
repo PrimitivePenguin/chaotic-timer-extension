@@ -1,6 +1,3 @@
-manifest.json - tells popups what to do
-popup.html, popup.css, popup.js - shows the timer
-
-chaotic_clock.js - injects itself into every page after loading
-
-background.js - always runs
+Works for Firefox (not tested for others)
+1. Go to about:config
+2. Set xpinstall.signatures.required to false   

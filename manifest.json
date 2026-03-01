@@ -7,8 +7,10 @@
 
 
   "icons": {
-    "48": "clock.png"
+    "48": "images/clock.png",
+    "96": "images/clock.png"
   },
+
 
   "content_scripts": [
     {
