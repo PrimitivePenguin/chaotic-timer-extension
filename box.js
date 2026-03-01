@@ -1,4 +1,8 @@
 function createBox({ title, body, buttons = [], width = '360px', position = null, id = null , image=null}) {
+  
+  console.log('[box] received image:', image)
+  console.log('[box] all params:', { title, body, width, position, id, image })
+  
   const overlay = document.createElement('div')
   
   if (image) {
