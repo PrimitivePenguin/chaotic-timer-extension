@@ -22,7 +22,7 @@
     "challenges/*"
   ],
   "browser_action": {
-    "default_icon": "clock.png",
+    "default_icon": "./images/clock.png",
     "default_title": "Chaotic Timer",
     "default_popup": "./popup/popup.html"
   },

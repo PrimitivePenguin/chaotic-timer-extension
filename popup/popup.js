@@ -145,7 +145,7 @@ function stopTimer(natural = false) {
   }
 
   // Expose to HTML onclick
-  window.handleBtn = handleBtn
+  //window.handleBtn = handleBtn
   mainBtn.addEventListener('click', handleBtn)
 
   // ---- INPUT FORMATTING ----

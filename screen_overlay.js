@@ -1,5 +1,5 @@
 // remove any existing overlay before starting fresh
-const existing = document.getElementById('__chaosOverlay')
+var existing = document.getElementById('__chaosOverlay')
 if (existing) existing.remove()
 
 window.__overlayRunning = false

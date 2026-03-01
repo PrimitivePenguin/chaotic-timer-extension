@@ -1,10 +1,28 @@
-function createBox({ title, body, buttons = [], width = '360px' }) {
+function createBox({ title, body, buttons = [], width = '360px', position = null, id = null , image=null}) {
   const overlay = document.createElement('div')
-  overlay.style.cssText = `
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    z-index: 999999; display: flex; align-items: center;
-    justify-content: center; font-family: monospace;
-  `
+  
+  if (image) {
+    overlay.style.backgroundImage = `url(${image})`
+    overlay.style.backgroundSize = 'cover'
+    overlay.style.backgroundPosition = 'center'
+  }
+
+  if (position) {
+    overlay.style.cssText = `
+      position: fixed;
+      left: ${position.x}px;
+      top: ${position.y}px;
+      background: rgba(0,0,0,0.85); z-index: 999999;
+    `
+  } else {
+    overlay.style.cssText = `
+        position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+        z-index: 999999; display: flex; align-items: center;
+        justify-content: center; font-family: monospace;
+    `
+  }
+  
+
 
   const box = document.createElement('div')
   box.style.cssText = `
@@ -33,7 +51,16 @@ function createBox({ title, body, buttons = [], width = '360px' }) {
     btnRow.appendChild(btn)
   })
 
-  box.innerHTML = `
+  if(image) {
+    console.log('Adding image to box:', image)
+  }
+  const imgHTML = image ? `
+    
+    <img src="${image}"
+     style="width:100%; height:80%; object-fit:cover; border-radius:8px; margin-bottom:1rem;" />
+  ` : ''
+
+  box.innerHTML = ` ${imgHTML}
     <h2 style="color:#f0ece4; font-size:1.3rem; margin-bottom:0.5rem">${title}</h2>
     <p style="color:#666; font-size:12px; line-height:1.6">${body}</p>
   `
@@ -43,9 +70,6 @@ function createBox({ title, body, buttons = [], width = '360px' }) {
 
   return { overlay, box, remove: () => overlay.remove() }
 }
-
-// ---- CHALLENGES ----
-
 
 function onSuccess() {
   window.__overlayRunning = false
