@@ -1,9 +1,9 @@
-const EXT_BASE = 'moz-extension://a2f91e21-e4b7-4507-96fe-9bbe81a3b81f'
+const EXT_BASE = browser.runtime.getURL('')
 
 window.holdChallenge = function() {
   const image = {
-    ad1: `${EXT_BASE}/images/18plus.jpg`,
-    ad2: `${EXT_BASE}/images/STONK.png`,
+    ad1: `${EXT_BASE}images/18plus.jpg`,
+    ad2: `${EXT_BASE}images/STONK.png`,
   }
 
   const adBoxes = []

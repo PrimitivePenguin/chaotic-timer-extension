@@ -101,7 +101,7 @@ function createBox({ title, body, buttons = [], width = '360px', position = null
     box.appendChild(tail)
 
     const avatarEl = document.createElement('img')
-    avatarEl.src = 'moz-extension://a2f91e21-e4b7-4507-96fe-9bbe81a3b81f/images/clock.png'
+    avatarEl.src = browser.runtime.getURL('images/clock.png')
     avatarEl.style.cssText = `
       position: absolute;
       bottom: -80px;

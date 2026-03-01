@@ -1,5 +1,5 @@
 window.chatbotChallenge = function() {
-  const EXT_BASE = 'moz-extension://a2f91e21-e4b7-4507-96fe-9bbe81a3b81f'
+  const EXT_BASE = browser.runtime.getURL('')
 
   // ---- DEFAULT BOX (underneath) ----
   const { overlay: defaultOverlay } = createBox({
