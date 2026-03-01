@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "chaotic timer",
+  "version": "0.1",
+
+  "description": "A timer extension that makes it difficult to end your session.",
+
+
+  "icons": {
+    "48": "clock.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["chaotic_clock.js"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "clock.png",
+    "default_title": "Chaotic Timer?",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ]
+}
