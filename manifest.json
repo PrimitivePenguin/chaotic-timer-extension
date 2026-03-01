@@ -16,17 +16,21 @@
       "js": ["chaotic_clock.js"]
     }
   ],
+  "web_accessible_resources": [
+    "screen_overlay.js"
+  ],
   "browser_action": {
     "default_icon": "clock.png",
-    "default_title": "Chaotic Timer?",
-    "default_popup": "popup.html"
+    "default_title": "Chaotic Timer",
+    "default_popup": "./popup/popup.html"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.js", "redirect.js", "endsession.js"],
     "persistent": true
   },
   "permissions": [
     "webRequest",
+    "tabs",
     "webRequestBlocking",
     "<all_urls>"
   ]

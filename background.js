@@ -21,6 +21,7 @@ async function refreshState() {
 refreshState()
 setInterval(refreshState, 5000)
 
+
 // Intercept every navigation before it happens
 browser.webRequest.onBeforeRequest.addListener(
   (details) => {
@@ -38,11 +39,26 @@ browser.webRequest.onBeforeRequest.addListener(
 
     if (isBanned) {
       console.log(`[background] blocking ${host}`)
-      return { redirectUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&mute=1' }
+      return randomRedirect()
     }
 
     return {}
   },
   { urls: ['<all_urls>'], types: ['main_frame'] },
-  ['blocking']
+  ['blocking']  
 )
+
+
+browser.runtime.onMessage.addListener((msg) => {
+  if (msg.type === 'CONFIRM_END_SESSION') {
+    console.log('[background] session ended by user')
+    fetch('https://chaotic-timer-default-rtdb.firebaseio.com/session.json', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ active: false, endsAt: null, bannedSites: [] })
+    })
+  }
+  if (msg.type === 'END_SESSION_CHAOS') {
+    triggerChallenge()
+  }
+})

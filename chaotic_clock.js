@@ -61,16 +61,34 @@ async function checkAndBlock() {
   // If session has expired, do nothing
   if (sessionState.endsAt && Date.now() > sessionState.endsAt) return
 
-  // If current site is banned, redirect
-  const host = getCurrentHost()
-  if (isBanned(host)) {
-    console.log(`[chaotic_clock] ${host} is banned. redirecting...`)
-    redirectToChaosPage()
-  }
+  // // If current site is banned, redirect
+  // const host = getCurrentHost()
+  // if (isBanned(host)) {
+  //   console.log(`[chaotic_clock] ${host} is banned. redirecting...`)
+  //   //redirectToChaosPage()
+  // }
 }
 
 // Run immediately on page load
 checkAndBlock()
 
-// Then poll every 3 seconds in case session starts while page is open
-setInterval(checkAndBlock, 3000)
+// Then poll every 20 seconds in case session starts while page is open
+setInterval(checkAndBlock, 20000)
+
+// Only autoplay if redirected by the extension
+if (window.location.href.includes('ref=autoplay')) {
+  function clickPlay() {
+    const video = document.querySelector('video')
+    if (video) {
+      video.play()
+      return true
+    }
+    return false
+  }
+
+  const attempt = setInterval(() => {
+    if (clickPlay()) clearInterval(attempt)
+  }, 500)
+
+  setTimeout(() => clearInterval(attempt), 5000)
+}
