@@ -39,5 +39,9 @@
     "tabs",
     "webRequestBlocking",
     "<all_urls>"
-  ]
+  ],
+  "data_collection_permissions": {
+    "required": [],
+    "optional": []
+  }
 }
