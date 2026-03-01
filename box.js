@@ -25,12 +25,13 @@ function createBox({ title, body, buttons = [], width = '360px', position = null
     box.style.cssText = `
       background: #1a1a1a;
       border: 2px solid #444;
-      border-radius: 50% / 35%;
-      padding: 3rem 4rem;
+      border-radius: 40px;
+      padding: 2rem 2.5rem;
       width: ${width};
       text-align: center;
       box-shadow: 0 8px 48px rgba(0,0,0,0.8);
       position: relative;
+      color: #f0ece4;
     `
     overlay.style.paddingBottom = '70px'
   } else {

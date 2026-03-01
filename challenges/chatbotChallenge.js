@@ -40,7 +40,9 @@ bubbleOverlay.style.cssText = `
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 80px;
+  padding-bottom: 250px;
+  left: 20%;
+  overflow: visible;
 `
 box.style.pointerEvents = 'auto'
 
@@ -76,7 +78,7 @@ box.style.pointerEvents = 'auto'
       width: 100%; padding: 0.4em 0.75em;
       background: ${bg}; color: ${color};
       border: none; border-radius: 6px;
-      font-family: monospace; font-size: 11px;
+      font-family: monospace; !important; font-size: 11px;
       font-weight: 700; cursor: pointer;
       margin-bottom: 4px;
     `
@@ -167,7 +169,7 @@ box.style.pointerEvents = 'auto'
 
     const list = document.createElement('div')
     list.style.cssText = `
-      display: flex; flex-direction: column; gap: 5px;
+      display: flex; flex-direction: column; gap: 10px;
       max-height: 150px; overflow-y: auto;
     `
 
