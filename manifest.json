@@ -4,7 +4,11 @@
   "version": "0.1",
 
   "description": "A timer extension that makes it difficult to end your session.",
-
+  
+  "data_collection_permissions": {
+    "required": [],
+    "optional": []
+  },
 
   "icons": {
     "48": "images/clock.png",
@@ -39,9 +43,5 @@
     "tabs",
     "webRequestBlocking",
     "<all_urls>"
-  ],
-  "data_collection_permissions": {
-    "required": [],
-    "optional": []
-  }
+  ]
 }
