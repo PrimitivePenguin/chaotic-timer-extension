@@ -20,7 +20,8 @@
     "screen_overlay.js",
     "box.js",
     "challenges/*",
-    "images/*"
+    "images/*",
+    "sounds/*"
   ],
   "browser_action": {
     "default_icon": "./images/clock.png",
