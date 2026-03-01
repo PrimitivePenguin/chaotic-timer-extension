@@ -45,6 +45,7 @@ window.holdChallenge = function() {
       triggered: false,
       action: () => {
         console.log('[holdChallenge] milestone: 25% — ad')
+        console.log('[holdChallenge] image url:', window.__images.ad1)
         const { box, overlay } = createBox({
             title: 'AD #1?',
             body: 'SEXY SINGLES IN YOUR AREA',

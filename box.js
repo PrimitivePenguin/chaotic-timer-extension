@@ -59,6 +59,7 @@ function createBox({ title, body, buttons = [], width = '360px', position = null
     <img src="${image}"
      style="width:100%; height:80%; object-fit:cover; border-radius:8px; margin-bottom:1rem;" />
   ` : ''
+  console.log('[box] imgHTML:', imgHTML)
 
   box.innerHTML = ` ${imgHTML}
     <h2 style="color:#f0ece4; font-size:1.3rem; margin-bottom:0.5rem">${title}</h2>

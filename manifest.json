@@ -19,7 +19,8 @@
   "web_accessible_resources": [
     "screen_overlay.js",
     "box.js",
-    "challenges/*"
+    "challenges/*",
+    "images/*"
   ],
   "browser_action": {
     "default_icon": "./images/clock.png",

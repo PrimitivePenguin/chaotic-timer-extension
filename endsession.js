@@ -8,10 +8,12 @@ function triggerChallenge() {
     const images = {}
     if (challenge === 'holdChallenge') {
       const images = {
-         ad1: browser.runtime.getURL('images/18+.png'),
-         ad2: browser.runtime.getURL('images/STONK.png'),
+         ad1: browser.runtime.getURL('./images/18plus.png'),
+         ad2: browser.runtime.getURL('./images/STONK.png'),
       }
+      console.log('[endsession] pre-resolved images:', images)
     }
+    
     browser.tabs.executeScript(id, { code: `window.__challenge = '${challenge}'; window.__images = ${JSON.stringify(images)}` })
       .then(() => browser.tabs.executeScript(id, { file: 'box.js' }))
       .then(() => browser.tabs.executeScript(id, { file: `challenges/${challenge}.js` }))
