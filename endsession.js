@@ -1,4 +1,4 @@
-var CHALLENGES = ['holdChallenge'] // do whatever the function name is ['defaultChallenge', 'holdChallenge']
+var CHALLENGES = ['chatbotChallenge'] // do whatever the function name is ['defaultChallenge', 'holdChallenge', 'alertChallenge', 'smallChallenge', 'goneChallenge']
 
 function triggerChallenge() {
   const challenge = CHALLENGES[Math.floor(Math.random() * CHALLENGES.length)]
