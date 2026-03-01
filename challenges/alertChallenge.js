@@ -1,4 +1,6 @@
 window.alertChallenge = function() {
+  const EXT_BASE = 'moz-extension://a2f91e21-e4b7-4507-96fe-9bbe81a3b81f'
+
   const TOTAL_BOXES = 50
   const BOX_W = 400
   const BOX_H = 300
@@ -128,10 +130,31 @@ window.alertChallenge = function() {
     }
   }
 
+  let audioUnlocked = false
+  document.addEventListener('click', () => { audioUnlocked = true }, { once: true })
+
+  function playSound() {
+    if (!audioUnlocked) return
+    const audio = new Audio()
+    audio.src = `${EXT_BASE}/sounds/erro.mp3`
+    audio.type = 'audio/mpeg'
+    console.log('[audio] playing sound:', audio.src)
+    audio.play()
+    audio.addEventListener('error', (e) => console.log('[audio] error:', e, audio.error))
+    audio.play().catch(() => {})
+  }
+
   function spawnAll() {
-    // stagger spawning so they don't all appear at once
     for (let i = 0; i < TOTAL_BOXES; i++) {
-      setTimeout(() => spawnAlertBox(i), i * 80)
+      setTimeout(() => {
+        playSound()
+        const audio = new Audio()
+        audio.src = `${EXT_BASE}/sounds/yoda.mp3`
+        audio.type = 'audio/mpeg'
+        audio.addEventListener('error', (e) => console.log('[audio] error:', e, audio.error))
+        audio.play()
+        spawnAlertBox(i)
+      }, i * 80)
     }
   }
 

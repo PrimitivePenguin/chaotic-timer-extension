@@ -258,9 +258,11 @@ window.chatbotChallenge = function() {
       btn.addEventListener('click', () => {
         if (item.a === null) {
           // play yoda death sound
-            const audio = new Audio(`${EXT_BASE}/sounds/lego-yoda_death-scream.mp3`)
-          audio.play()
-          console.log(`play sound: ${EXT_BASE}/sounds/lego-yoda_death-scream.mp3`)
+            const audio = new Audio()
+            audio.src = `${EXT_BASE}/sounds/yoda.mp3`
+            audio.type = 'audio/mpeg'
+            audio.addEventListener('error', (e) => console.log('[audio] error:', e, audio.error))
+            audio.play()
           shadowHost.remove()
         } else {
           showFAQAnswer(item.a)
