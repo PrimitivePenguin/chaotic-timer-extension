@@ -1,5 +1,5 @@
 function rickroll() {
-  return { redirectUrl: 'https://www.youtube.com/dQw4w9WgXcQ?autoplay=1&ref=chaotic' }
+  return { redirectUrl: 'www.youtube.com/watch?v=dQw4w9WgXcQ' }
 }
 
 function cornfield() {
