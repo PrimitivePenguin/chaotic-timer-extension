@@ -1,13 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   /**
    * popup.js — POPUP UI SCRIPT
    * Manages timer UI and writes session state to Firebase.
    * Uses PATCH (not PUT) so bannedSites managed by the web app are never overwritten.
    */
 
-  const FIREBASE_URL = 'https://chaotic-timer-default-rtdb.firebaseio.com/session.json'
-  const CIRCUMFERENCE = 2 * Math.PI * 58
+  const uid = await browser.runtime.sendMessage({ type: 'GET_UID' })
 
+  const FIREBASE_URL = `https://chaotic-timer-default-rtdb.firebaseio.com/users/${uid}/session.json`
+  const CIRCUMFERENCE = 2 * Math.PI * 58
+  
   const ringFill   = document.getElementById('ringFill')
   const ringTime   = document.getElementById('ringTime')
   const ringLabel  = document.getElementById('ringLabel')
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainBtn    = document.getElementById('mainBtn')
   const inputMM    = document.getElementById('inputMM')
   const inputSS    = document.getElementById('inputSS')
+  const manageBtn  = document.getElementById('manageBtn')
 
   let totalSeconds     = 0
   let remainingSeconds = 0
@@ -29,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       await fetch(FIREBASE_URL, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload), // body is what is sent to server
       })
     } catch (err) {
       console.error('[popup] Firebase write failed:', err)
@@ -95,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isActive = true
     interval = setInterval(tick, 1000)
     updateUI()
+    console.log(`[popup] session started for ${totalSeconds} seconds`)
 
     // PATCH — only update active/endsAt, never touch bannedSites
     patchFirebase({
@@ -153,6 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     updateUI()
   }
+  document.getElementById('manageBtn').addEventListener('click', async () => {
+    const uid = await browser.runtime.sendMessage({ type: 'GET_UID' })
+    browser.tabs.create({ url: `https://chaotic-timer.vercel.app/dashboard/?uid=${uid}` })
+    // `https://localhost:5173/dashboard/?uid=${uid}` // idk localhost no workk
+    // `https://chaotic-timer.vercel.app/dashboard/?uid=${uid}`
+  })
 
   init()
 })

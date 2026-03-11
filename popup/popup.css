@@ -234,3 +234,20 @@ color: var(--dim);
 letter-spacing: 0.06em;
 text-align: center;
 }
+
+.manage-btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.manage-btn:hover {
+  border-color: #444;
+  color: var(--text);
+}
